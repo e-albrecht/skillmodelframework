@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27.10.2015 15:41:47 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="de.unigoe.informatik.swe.data.CompilationResult" table="tbl_compilation_results">
+        <id name="id" type="int">
+            <column name="result_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="solution" class="de.unigoe.informatik.swe.data.Solution" fetch="join">
+            <column name="solution_id" />
+        </many-to-one>        
+        <set name="errors" table="tbl_compilation_result_errors" cascade="save-update" inverse="true" lazy="true">
+            <key>
+                <column name="result_id" />
+            </key>
+            <one-to-many class="de.unigoe.informatik.swe.data.CompilationResultError" />
+        </set>
+        <property name="rawCompilationResult" type="text">
+            <column name="raw_result" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

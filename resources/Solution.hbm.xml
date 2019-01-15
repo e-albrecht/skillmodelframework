@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27.10.2015 15:41:47 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="de.unigoe.informatik.swe.data.Solution" table="tbl_solutions">
+        <id name="id" type="int">
+            <column name="solution_id" />
+            <generator class="native" />
+        </id>
+        <property name="studentId" type="int">
+            <column name="student_id" not-null="true"/>
+        </property>  
+        <many-to-one name="exercise" class="de.unigoe.informatik.swe.data.Exercise" fetch="join">
+            <column name="exercise_id" not-null="true"/>
+        </many-to-one>
+        <property name="tryNumber" type="int">
+            <column name="try_number" not-null="true"/>
+        </property>
+        <property name="resultPercentage" type="int">
+            <column name="result_percentage" not-null="false"/>
+        </property>        
+            <property name="sourceCode" type="string">
+            <column name="source_code" not-null="false"/>
+        </property> 
+        <property name="krm" column="krm" />   
+    </class>
+</hibernate-mapping>

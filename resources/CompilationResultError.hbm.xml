@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27.10.2015 15:41:47 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="de.unigoe.informatik.swe.data.CompilationResultError" table="tbl_compilation_result_errors">
+        <id name="id" type="int">
+            <column name="error_id" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="result" class="de.unigoe.informatik.swe.data.CompilationResult" fetch="join">
+            <column name="result_id" not-null="true"/>
+        </many-to-one>
+        <property name="line" type="int">
+            <column name="line" />
+        </property>
+        <property name="column" type="int">
+            <column name="col" />
+        </property>
+        <property name="message" type="text">
+            <column name="message" not-null="true"/>
+        </property>
+        <property name="severity">
+            <column name="severity" />
+            <type name="org.hibernate.type.EnumType">
+                <param name="type">12</param>
+                <param name="enumClass">de.unigoe.informatik.swe.data.CompilationResultError$Severity</param>
+            </type>
+        </property>
+    </class>
+</hibernate-mapping>
